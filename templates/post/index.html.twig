@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Posts</h1>
+
+    <ul class="list-group">
+        {% if posts|length > 0 %}
+            {% for post in posts %}
+                <li class="list-group-item"><a href="{{ url('posts_show', {id: post.id}) }}">{{ post.title }}</a> <a class="badge badge-danger" href="{{ path('posts_delete', {'id': post.id }) }}">-</a></li>
+            {% endfor %}
+        {% else %}
+            <li class="list-group-item disabled">No post found</li>
+        {% endif %}
+    </ul>
+
+    <a class="btn btn-outline-success" href="{{ url('posts_create') }}">New Post</a>
+</div>
+{% endblock %}
